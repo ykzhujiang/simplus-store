@@ -1,62 +1,51 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #2D3436;
-  --color-primary-dark: #1e2425;
-  --color-accent: #FF6348;
-  --color-accent-light: #FF7B64;
-  --color-accent-dark: #e5573e;
-  --color-secondary: #0984E3;
-  --color-background: #FFFFFF;
-  --color-surface: #F7F8FA;
-  --color-text: #2D3436;
-  --color-text-light: #636E72;
-  --color-text-muted: #B2BEC3;
-  --color-border: #E8ECEF;
+  --color-primary: #111111;
+  --color-primary-light: #333333;
+  --color-accent: #E8503A;
+  --color-accent-hover: #D14430;
+  --color-surface: #F5F5F7;
+  --color-surface-alt: #FBFBFD;
+  --color-text: #1D1D1F;
+  --color-text-secondary: #6E6E73;
+  --color-text-tertiary: #86868B;
+  --color-border: #D2D2D7;
+  --color-border-light: #E8E8ED;
   --color-white: #FFFFFF;
 
-  --radius-card: 16px;
-  --radius-button: 12px;
-
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-card-hover: 0 10px 40px rgba(0, 0, 0, 0.08);
-  --shadow-nav: 0 1px 3px rgba(0, 0, 0, 0.05);
-
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-heading: "Poppins", system-ui, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-heading: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
   color: var(--color-text);
-  background-color: var(--color-background);
+  background: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-weight: 600;
 }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-fade-up { animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
 @keyframes toast-in {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out forwards;
 }

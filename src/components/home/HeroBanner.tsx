@@ -2,101 +2,95 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 
 const slides = [
   {
     image: "https://img.myshopline.com/image/store/2000075912/1622516949344/-15_1.png?w=1280&h=1280",
-    tag: "Best Seller",
-    headline: "Good Life,\nGreat Value.",
-    subtitle: "Affordable, stylish home appliances designed for modern living.",
+    overline: "Air Fryer with Visible Window",
+    headline: "Cook smarter.\nEat better.",
+    desc: "360° rapid air circulation for crispy, oil-free cooking. See your food as it cooks through the panoramic window.",
     cta: "Shop Now",
+    bg: "bg-[#F5F5F7]",
   },
   {
     image: "https://img.myshopline.com/image/store/2000075912/1622516949344/KFJH007-PNG5.png?w=2500&h=2500",
-    tag: "New Arrival",
-    headline: "Espresso\nat Home.",
-    subtitle: "Barista-quality coffee at the press of a button.",
+    overline: "Semi-Automatic Espresso Machine",
+    headline: "Barista quality.\nEvery morning.",
+    desc: "Professional extraction meets one-touch simplicity. Your perfect cup, at home.",
     cta: "Explore",
+    bg: "bg-[#F9F6F2]",
   },
   {
     image: "https://img.myshopline.com/image/store/2000075912/1622516949344/CFJH0061-4-FINAL.png?w=1080&h=1080",
-    tag: "Popular",
-    headline: "High Speed\nHair Care.",
-    subtitle: "Salon-quality results, everyday simplicity.",
+    overline: "High Speed Ionic Hair Dryer",
+    headline: "Fast dry.\nZero damage.",
+    desc: "110,000 RPM motor with ionic technology. Salon results in half the time.",
     cta: "Discover",
+    bg: "bg-[#F5F5F7]",
   },
 ];
 
 export default function HeroBanner() {
-  const [current, setCurrent] = useState(0);
+  const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const t = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    if (paused) { if (timer.current) clearInterval(timer.current); return; }
-    timer.current = setInterval(() => { setCurrent((p) => (p + 1) % slides.length); }, 5000);
-    return () => { if (timer.current) clearInterval(timer.current); };
+    if (paused) { if (t.current) clearInterval(t.current); return; }
+    t.current = setInterval(() => { setI((p) => (p + 1) % slides.length); }, 6000);
+    return () => { if (t.current) clearInterval(t.current); };
   }, [paused]);
 
-  const slide = slides[current];
+  const s = slides[i];
 
   return (
     <section
-      className="relative overflow-hidden bg-surface"
+      className={`${s.bg} transition-colors duration-700`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24 lg:py-28">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-16 lg:gap-24">
+      <div className="mx-auto max-w-[1200px] px-8 py-20 md:py-28 lg:py-36">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center">
           {/* Text */}
-          <div key={current} className="flex-1 text-center md:text-left animate-fade-in-up">
-            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4 bg-accent/10 px-3 py-1 rounded-full">
-              {slide.tag}
-            </span>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-[1.1] mb-5 whitespace-pre-line">
-              {slide.headline}
-            </h1>
-            <p className="text-text-light text-base md:text-lg max-w-md mb-8 leading-relaxed">
-              {slide.subtitle}
+          <div key={i} className="anim-fade-up order-2 md:order-1">
+            <p className="text-[12px] font-medium tracking-[0.12em] uppercase text-text-tertiary mb-5">
+              {s.overline}
             </p>
-            <a
-              href="#featured-products"
-              className="inline-flex items-center gap-2 bg-primary text-white font-medium text-sm px-7 py-3.5 rounded-xl hover:bg-primary-dark transition-all duration-200 active:scale-[0.98]"
-            >
-              {slide.cta}
-              <ArrowRight className="w-4 h-4" />
+            <h1 className="text-[clamp(2.5rem,5vw,3.75rem)] font-semibold text-primary leading-[1.08] tracking-[-0.03em] mb-6 whitespace-pre-line">
+              {s.headline}
+            </h1>
+            <p className="text-[16px] leading-[1.6] text-text-secondary max-w-[380px] mb-9">
+              {s.desc}
+            </p>
+            <a href="#featured-products"
+              className="inline-flex items-center text-[14px] font-medium text-white bg-primary px-7 py-3 rounded-full hover:bg-primary-light transition-colors duration-200">
+              {s.cta}
+              <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </a>
           </div>
 
-          {/* Product Image */}
-          <div key={`img-${current}`} className="flex-1 flex justify-center animate-fade-in-up">
-            <div className="relative">
-              <div className="absolute inset-0 bg-accent/5 rounded-full blur-3xl scale-110" />
-              <Image
-                src={slide.image}
-                alt={slide.headline}
-                width={420}
-                height={420}
-                priority={current === 0}
-                className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[420px] lg:h-[420px] object-contain drop-shadow-2xl"
-              />
-            </div>
+          {/* Image */}
+          <div key={`img-${i}`} className="anim-fade-up order-1 md:order-2 flex justify-center">
+            <Image
+              src={s.image}
+              alt={s.overline}
+              width={520}
+              height={520}
+              priority={i === 0}
+              className="w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[480px] lg:h-[480px] object-contain"
+            />
           </div>
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center md:justify-start gap-2 mt-12">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`rounded-full transition-all duration-300 ${
-                i === current
-                  ? "bg-primary w-8 h-2.5"
-                  : "bg-text-muted/40 hover:bg-text-muted w-2.5 h-2.5"
-              }`}
-            />
+        <div className="flex gap-2 mt-16 md:mt-20">
+          {slides.map((_, idx) => (
+            <button key={idx} onClick={() => setI(idx)}
+              className={`h-[3px] rounded-full transition-all duration-500 ${
+                idx === i ? "bg-primary w-10" : "bg-black/15 w-5 hover:bg-black/25"
+              }`} />
           ))}
         </div>
       </div>

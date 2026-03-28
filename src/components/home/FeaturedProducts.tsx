@@ -3,17 +3,15 @@ import ProductCard from "@/components/product/ProductCard";
 
 export default function FeaturedProducts() {
   return (
-    <section id="featured-products" className="py-20 px-6 lg:px-8 bg-surface">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-14">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-3">
-            Best Sellers
-          </h2>
-          <p className="text-text-light text-base max-w-md mx-auto">
-            Our most popular products loved across Southeast Asia
-          </p>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+    <section id="featured-products" className="py-24 px-8 bg-white">
+      <div className="mx-auto max-w-[1200px]">
+        <p className="text-[12px] font-medium tracking-[0.12em] uppercase text-text-tertiary mb-3 text-center">
+          Most Popular
+        </p>
+        <h2 className="font-heading text-[clamp(1.75rem,3vw,2.5rem)] font-semibold text-primary text-center mb-16 tracking-[-0.025em]">
+          Best Sellers
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-10">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

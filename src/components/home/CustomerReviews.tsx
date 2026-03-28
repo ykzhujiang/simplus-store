@@ -1,62 +1,54 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star } from "lucide-react";
 
 const reviews = [
-  { name: "Sarah L.", country: "🇸🇬", rating: 5, text: "The air fryer is amazing! Cooks perfectly every time and the design is so sleek. Best purchase this year." },
-  { name: "Ahmad R.", country: "🇲🇾", rating: 5, text: "Love my Simplus vacuum cleaner. Super lightweight, great suction, and the battery lasts forever." },
-  { name: "Priya M.", country: "🇮🇩", rating: 4, text: "The hair dryer is salon-quality at a fraction of the price. Dries my hair in minutes!" },
-  { name: "James T.", country: "🇹🇭", rating: 5, text: "Bought the espresso machine on a whim — now I can't live without it. Incredible value." },
+  { name: "Sarah L.", loc: "Singapore", rating: 5, text: "The air fryer exceeded all expectations. The visible window is a game-changer — I can finally watch my food cook without opening the basket." },
+  { name: "Ahmad R.", loc: "Malaysia", rating: 5, text: "Incredibly lightweight vacuum with powerful suction. Battery lasts through my entire apartment. Best value for money I've found." },
+  { name: "Priya M.", loc: "Indonesia", rating: 5, text: "This hair dryer is salon-quality at a fraction of the price. My hair is noticeably smoother and dries in half the time." },
+  { name: "James T.", loc: "Thailand", rating: 5, text: "The espresso machine produces café-quality shots consistently. At this price point, nothing else comes close." },
 ];
 
 export default function CustomerReviews() {
-  const [current, setCurrent] = useState(0);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [c, setC] = useState(0);
+  const t = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    timer.current = setInterval(() => { setCurrent((p) => (p + 1) % reviews.length); }, 6000);
-    return () => { if (timer.current) clearInterval(timer.current); };
+    t.current = setInterval(() => { setC((p) => (p + 1) % reviews.length); }, 7000);
+    return () => { if (t.current) clearInterval(t.current); };
   }, []);
 
+  const r = reviews[c];
+
   return (
-    <section className="py-20 px-6 lg:px-8 bg-surface">
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-14">
-          What Our Customers Say
+    <section className="py-24 px-8 bg-white">
+      <div className="mx-auto max-w-[640px] text-center">
+        <p className="text-[12px] font-medium tracking-[0.12em] uppercase text-text-tertiary mb-3">
+          Customer Stories
+        </p>
+        <h2 className="font-heading text-[clamp(1.75rem,3vw,2.5rem)] font-semibold text-primary mb-16 tracking-[-0.025em]">
+          Loved by thousands
         </h2>
 
-        <div className="relative">
-          <div key={current} className="animate-fade-in-up">
-            <div className="flex justify-center gap-1 mb-5">
-              {Array.from({ length: reviews[current].rating }).map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-              ))}
-            </div>
-            <blockquote className="text-lg md:text-xl text-primary leading-relaxed mb-6 font-medium">
-              &ldquo;{reviews[current].text}&rdquo;
-            </blockquote>
-            <p className="text-text-light text-sm">
-              {reviews[current].name} <span className="ml-1">{reviews[current].country}</span>
-            </p>
+        <div key={c} className="anim-fade-up">
+          <div className="flex justify-center gap-1 mb-6">
+            {Array.from({ length: r.rating }).map((_, j) => (
+              <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
+            ))}
           </div>
+          <blockquote className="text-[18px] md:text-[20px] leading-[1.6] text-primary font-normal mb-8">
+            &ldquo;{r.text}&rdquo;
+          </blockquote>
+          <p className="text-[13px] text-text-secondary font-medium">{r.name}</p>
+          <p className="text-[12px] text-text-tertiary">{r.loc}</p>
+        </div>
 
-          <div className="flex justify-center items-center gap-4 mt-10">
-            <button onClick={() => setCurrent((current - 1 + reviews.length) % reviews.length)}
-              className="p-2 rounded-xl hover:bg-white border border-border/50 transition-colors">
-              <ChevronLeft className="w-4 h-4 text-text-light" />
-            </button>
-            <div className="flex gap-2">
-              {reviews.map((_, i) => (
-                <button key={i} onClick={() => setCurrent(i)}
-                  className={`rounded-full transition-all duration-300 ${i === current ? "bg-primary w-6 h-2" : "bg-text-muted/30 w-2 h-2"}`} />
-              ))}
-            </div>
-            <button onClick={() => setCurrent((current + 1) % reviews.length)}
-              className="p-2 rounded-xl hover:bg-white border border-border/50 transition-colors">
-              <ChevronRight className="w-4 h-4 text-text-light" />
-            </button>
-          </div>
+        <div className="flex justify-center gap-2 mt-14">
+          {reviews.map((_, j) => (
+            <button key={j} onClick={() => setC(j)}
+              className={`h-[2px] rounded-full transition-all duration-500 ${j === c ? "bg-primary w-8" : "bg-border w-4"}`} />
+          ))}
         </div>
       </div>
     </section>
