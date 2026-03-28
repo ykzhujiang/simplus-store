@@ -1,57 +1,65 @@
-# Homepage Layout
+# Homepage Layout — V2 (Premium Design)
 
 ## Job to Be Done
-When a visitor lands on the Simplus website, they should immediately understand what Simplus sells, feel the brand identity ("Simple + Plus"), and be guided toward browsing products.
+Create a visually stunning, brand-aligned homepage that showcases Simplus products with real imagery and feels like a premium DTC brand site.
 
-## Requirements
+## Design Philosophy
+- Clean, minimal, Apple/Dyson-inspired aesthetic
+- Products are the hero — let real product photos shine
+- Generous whitespace, clean typography
+- Smooth micro-interactions and animations
+- Mobile-first responsive design
 
-### Hero Section
-- Full-width hero banner with auto-rotating carousel (3-5 slides)
-- Each slide: product hero image + headline + CTA button
-- First slide: brand introduction ("Top Choice of Appliances for Young")
-- Subsequent slides: featured products or promotions
-- Smooth transition animation, pause on hover
+## Sections (Top to Bottom)
 
-### Navigation Bar
-- Sticky top nav with Simplus logo (left)
-- Menu items: Home, Products, About Us, Contact
-- Product dropdown showing categories: Kitchen, Cleaning, Personal Care
-- Search icon + Cart icon (right side)
-- Mobile: hamburger menu with slide-out drawer
+### 1. Navigation Bar
+- Clean white background, sticky
+- Simplus text logo (left) — use brand navy color
+- Menu: Home, Products, About, Contact (center or right)
+- Cart icon with count badge (right)
+- Mobile: hamburger → full-screen overlay menu
 
-### Category Showcase
-- 3-4 category cards in a grid row below hero
-- Categories: Kitchen Appliances, Cleaning Appliances, Personal Care
-- Each card: icon/image + category name + "Shop Now" link
-- Hover effect with subtle elevation
+### 2. Hero Section
+- Full-width, NOT gradient fills — use clean product showcase
+- Option A: Large product image (Air Fryer) on clean background with tagline overlay
+- Option B: Split hero — left text, right product image
+- Headline: "Simple + Plus" or "Good Life, Great Value"
+- Subheadline: "Affordable, stylish home appliances for modern living"
+- CTA: "Shop Now" button
+- Subtle entrance animation
 
-### Featured Products Section
-- "Best Sellers" heading
-- Grid of 4-8 product cards
-- Each card: product image, name, price (USD), star rating, "Add to Cart" button
-- Responsive: 4 cols desktop, 2 cols tablet, 1 col mobile
+### 3. Category Cards
+- 3 cards: Kitchen | Cleaning | Personal Care
+- Each: icon + category name + product count
+- Clean card design with subtle hover lift
+- Consistent padding and spacing
 
-### Brand Story Section
-- Split layout: image left, text right
-- Brief brand story: founded 2021, Southeast Asia, "Simple + Plus" philosophy
-- "美好生活，好用不贵" / "Good Life, Great Value" tagline
-- "Learn More" CTA
+### 4. Best Sellers / Featured Products
+- Section title: "Best Sellers" with subtle decorative line
+- Product grid: 4 cols desktop, 2 tablet, 1 mobile
+- Show all 8 real products
+- Clean white product cards with real images
 
-### Customer Reviews Section
-- Carousel of 3-5 customer testimonials
-- Each: avatar, name, country flag, star rating, review text
-- Auto-scroll with manual navigation dots
+### 5. Brand Story / Value Proposition
+- Clean section with alternating background (#F8F9FA)
+- 3 value props in a row: Quality, Affordable, Designed for You
+- Each with icon + title + short description
+- OR brand story with lifestyle image
 
-### Footer
-- 4-column layout: About, Customer Service, Follow Us, Payment & Shipping
-- Social media icons: Facebook, Instagram, TikTok, Shopee, Lazada
-- Payment method icons (Visa, Mastercard, PayPal, COD)
-- Copyright notice
+### 6. Customer Reviews
+- Clean testimonial cards
+- Star rating + quote + name + country
+- Carousel or grid
+
+### 7. Footer
+- Clean, structured footer
+- Brand info, links, social media, payment icons
+- Newsletter signup (optional)
 
 ## Acceptance Criteria
-- [ ] Page loads in under 3 seconds (Lighthouse performance > 80)
-- [ ] Fully responsive: desktop (1200px+), tablet (768px), mobile (375px)
-- [ ] All sections render correctly with placeholder data
-- [ ] Hero carousel auto-rotates every 5 seconds
-- [ ] Navigation is sticky and functional on all breakpoints
-- [ ] Accessible: semantic HTML, alt texts, keyboard navigation
+- [ ] Design feels premium and cohesive
+- [ ] All real product images load correctly
+- [ ] Responsive on all breakpoints
+- [ ] Smooth animations and transitions
+- [ ] Consistent with Simplus brand identity
+- [ ] Lighthouse performance score > 80
