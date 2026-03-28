@@ -1,160 +1,62 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
-interface Review {
-  name: string;
-  flag: string;
-  rating: number;
-  text: string;
-}
-
-const reviews: Review[] = [
-  {
-    name: "Sarah L.",
-    flag: "🇸🇬",
-    rating: 5,
-    text: "The air fryer changed my cooking game! Perfect size for my small kitchen.",
-  },
-  {
-    name: "Ahmad R.",
-    flag: "🇲🇾",
-    rating: 5,
-    text: "Best vacuum cleaner at this price. Powerful suction and long battery life.",
-  },
-  {
-    name: "Lisa T.",
-    flag: "🇹🇭",
-    rating: 4,
-    text: "Love the hair dryer! Dries quickly and the compact design is great for travel.",
-  },
-  {
-    name: "James W.",
-    flag: "🇵🇭",
-    rating: 5,
-    text: "The multicooker does everything — rice, soup, stew. Amazing value for money.",
-  },
-  {
-    name: "Mei C.",
-    flag: "🇮🇩",
-    rating: 4,
-    text: "Garment steamer works well on most fabrics. Heats up fast and easy to use.",
-  },
+const reviews = [
+  { name: "Sarah L.", country: "🇸🇬", rating: 5, text: "The air fryer is amazing! Cooks perfectly every time and the design is so sleek. Best purchase this year." },
+  { name: "Ahmad R.", country: "🇲🇾", rating: 5, text: "Love my Simplus vacuum cleaner. Super lightweight, great suction, and the battery lasts forever." },
+  { name: "Priya M.", country: "🇮🇩", rating: 4, text: "The hair dryer is salon-quality at a fraction of the price. Dries my hair in minutes!" },
+  { name: "James T.", country: "🇹🇭", rating: 5, text: "Bought the espresso machine on a whim — now I can't live without it. Incredible value." },
 ];
-
-function StarRating({ rating }: { rating: number }) {
-  return (
-    <div className="flex items-center gap-0.5">
-      {Array.from({ length: 5 }, (_, i) => (
-        <Star
-          key={i}
-          size={18}
-          className={
-            i < rating
-              ? "fill-yellow-400 text-yellow-400"
-              : "fill-gray-200 text-gray-200"
-          }
-        />
-      ))}
-    </div>
-  );
-}
 
 export default function CustomerReviews() {
   const [current, setCurrent] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const goTo = useCallback((index: number) => {
-    setCurrent((index + reviews.length) % reviews.length);
-  }, []);
-
-  const prev = useCallback(() => {
-    goTo(current - 1);
-  }, [current, goTo]);
-
-  const next = useCallback(() => {
-    goTo(current + 1);
-  }, [current, goTo]);
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setCurrent((c) => (c + 1) % reviews.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [isPaused]);
+    timer.current = setInterval(() => { setCurrent((p) => (p + 1) % reviews.length); }, 6000);
+    return () => { if (timer.current) clearInterval(timer.current); };
+  }, []);
 
   return (
-    <section className="py-16 px-4 bg-gray-50">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="font-heading text-3xl font-bold text-center text-gray-900 mb-10">
+    <section className="py-20 px-6 lg:px-8 bg-surface">
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-14">
           What Our Customers Say
         </h2>
 
-        <div
-          className="relative overflow-hidden"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Carousel track */}
-          <div
-            className="flex transition-transform duration-500"
-            style={{ transform: `translateX(-${current * 100}%)` }}
-          >
-            {reviews.map((review, index) => (
-              <div
-                key={index}
-                className="min-w-full px-4"
-                aria-hidden={index !== current}
-              >
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col items-center text-center gap-4">
-                  <StarRating rating={review.rating} />
-                  <p className="text-gray-700 text-lg leading-relaxed">
-                    &ldquo;{review.text}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-2 text-gray-900 font-semibold">
-                    <span className="text-2xl">{review.flag}</span>
-                    <span>{review.name}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
+        <div className="relative">
+          <div key={current} className="animate-fade-in-up">
+            <div className="flex justify-center gap-1 mb-5">
+              {Array.from({ length: reviews[current].rating }).map((_, i) => (
+                <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+              ))}
+            </div>
+            <blockquote className="text-lg md:text-xl text-primary leading-relaxed mb-6 font-medium">
+              &ldquo;{reviews[current].text}&rdquo;
+            </blockquote>
+            <p className="text-text-light text-sm">
+              {reviews[current].name} <span className="ml-1">{reviews[current].country}</span>
+            </p>
           </div>
 
-          {/* Prev button */}
-          <button
-            onClick={prev}
-            aria-label="Previous review"
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 bg-white border border-gray-200 rounded-full p-2 shadow hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-          >
-            <ChevronLeft size={20} className="text-gray-600" />
-          </button>
-
-          {/* Next button */}
-          <button
-            onClick={next}
-            aria-label="Next review"
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 bg-white border border-gray-200 rounded-full p-2 shadow hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-          >
-            <ChevronRight size={20} className="text-gray-600" />
-          </button>
-        </div>
-
-        {/* Navigation dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {reviews.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goTo(index)}
-              aria-label={`Go to review ${index + 1}`}
-              className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 focus:outline-none ${
-                index === current
-                  ? "bg-gray-800"
-                  : "bg-gray-300 hover:bg-gray-500"
-              }`}
-            />
-          ))}
+          <div className="flex justify-center items-center gap-4 mt-10">
+            <button onClick={() => setCurrent((current - 1 + reviews.length) % reviews.length)}
+              className="p-2 rounded-xl hover:bg-white border border-border/50 transition-colors">
+              <ChevronLeft className="w-4 h-4 text-text-light" />
+            </button>
+            <div className="flex gap-2">
+              {reviews.map((_, i) => (
+                <button key={i} onClick={() => setCurrent(i)}
+                  className={`rounded-full transition-all duration-300 ${i === current ? "bg-primary w-6 h-2" : "bg-text-muted/30 w-2 h-2"}`} />
+              ))}
+            </div>
+            <button onClick={() => setCurrent((current + 1) % reviews.length)}
+              className="p-2 rounded-xl hover:bg-white border border-border/50 transition-colors">
+              <ChevronRight className="w-4 h-4 text-text-light" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

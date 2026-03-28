@@ -1,75 +1,48 @@
-import type { FC } from "react";
-import Image from "next/image";
+import { Shield, Truck, HeadphonesIcon } from "lucide-react";
 
-const BrandStory: FC = () => {
+const values = [
+  { icon: Shield, title: "Quality First", desc: "Every product passes rigorous quality tests before reaching your doorstep." },
+  { icon: Truck, title: "Fast Delivery", desc: "Free shipping across Southeast Asia on all orders above $50." },
+  { icon: HeadphonesIcon, title: "24/7 Support", desc: "Our customer team is always here to help — before, during, and after purchase." },
+];
+
+export default function BrandStory() {
   return (
-    <section aria-labelledby="brand-story-heading" className="py-16 md:py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-          {/* Left: Brand Image Placeholder */}
-          <div className="w-full md:w-1/2 flex-shrink-0">
-            <Image
-              src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=600&fit=crop"
-              alt="Modern home with Simplus appliances"
-              width={800}
-              height={600}
-              className="rounded-[12px] w-full aspect-[4/3] object-cover"
-            />
-          </div>
+    <section className="py-20 px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-14">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-3">
+            Why Simplus?
+          </h2>
+          <p className="text-text-light text-base max-w-lg mx-auto">
+            Simple + Plus — great design and great value, without compromise.
+          </p>
+        </div>
 
-          {/* Right: Text Content */}
-          <div className="w-full md:w-1/2 flex flex-col gap-5">
-            <h2
-              id="brand-story-heading"
-              className="font-heading text-3xl md:text-4xl font-bold text-secondary leading-tight"
-            >
-              Our Story
-            </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {values.map((v) => {
+            const Icon = v.icon;
+            return (
+              <div key={v.title} className="text-center">
+                <div className="w-14 h-14 rounded-2xl bg-surface flex items-center justify-center mx-auto mb-5">
+                  <Icon className="w-6 h-6 text-accent" />
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-primary mb-2">{v.title}</h3>
+                <p className="text-text-light text-sm leading-relaxed max-w-xs mx-auto">{v.desc}</p>
+              </div>
+            );
+          })}
+        </div>
 
-            <p className="text-text-light text-sm font-medium uppercase tracking-widest">
-              Founded 2021 · Southeast Asia
-            </p>
-
-            <p className="text-text text-base md:text-lg leading-relaxed">
-              The name <strong>Simplus</strong> is rooted in a simple idea:{" "}
-              <strong>Simple + Plus</strong>. We believe everyday products
-              should be beautifully simple in design, while delivering plus
-              value — more quality, more thoughtfulness, more life for your
-              money.
-            </p>
-
-            <p className="text-text text-base md:text-lg leading-relaxed">
-              Born in Southeast Asia and built for modern living, Simplus
-              started with a conviction that a good life should not come at
-              a premium price. Every product we bring to you is chosen with
-              that promise in mind.
-            </p>
-
-            <div className="flex flex-col gap-1">
-              <p
-                className="font-heading text-xl md:text-2xl font-semibold text-secondary"
-                lang="zh"
-              >
-                美好生活，好用不贵
-              </p>
-              <p className="text-text-light text-base italic">
-                &ldquo;Good Life, Great Value&rdquo;
-              </p>
-            </div>
-
-            <div className="pt-2">
-              <a
-                href="#featured-products"
-                className="inline-block bg-accent hover:bg-accent-dark text-white font-semibold text-sm px-6 py-3 rounded-[8px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-              >
-                Explore Products
-              </a>
-            </div>
-          </div>
+        <div className="mt-16 bg-surface rounded-3xl p-10 md:p-14 text-center">
+          <p className="font-heading text-2xl md:text-3xl font-bold text-primary mb-2">
+            美好生活，好用不贵
+          </p>
+          <p className="text-text-light text-base italic">
+            &ldquo;Good Life, Great Value&rdquo; — since 2021
+          </p>
         </div>
       </div>
     </section>
   );
-};
-
-export default BrandStory;
+}

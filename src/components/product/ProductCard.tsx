@@ -2,102 +2,61 @@
 
 import { Product } from "@/types/product";
 import { useCart } from "@/components/cart/CartProvider";
-import { formatPrice, getStarRating } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils";
 import { Star, ShoppingCart } from "lucide-react";
-import Image from "next/image";
 
-interface ProductCardProps {
-  product: Product;
-}
-
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
-
-  const { filled: filledStars, empty: emptyStars } = getStarRating(product.rating);
-
-  const badgeStyles: Record<string, string> = {
-    "Best Seller": "bg-primary text-white",
-    New: "bg-accent text-white",
-    Sale: "bg-red-500 text-white",
-  };
+  const filled = Math.round(product.rating);
 
   return (
-    <div className="rounded-[12px] bg-white overflow-hidden transition-shadow duration-200 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)]">
-      {/* Image area */}
-      <div className="relative aspect-square overflow-hidden bg-gray-100">
-        <Image
+    <div className="group bg-white rounded-2xl border border-border/60 hover:border-border hover:shadow-[var(--shadow-card-hover)] transition-all duration-300 overflow-hidden">
+      {/* Image */}
+      <div className="relative aspect-square bg-surface p-6 overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={product.image}
           alt={product.name}
-          width={400}
-          height={400}
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
         />
-
-        {/* Badge overlay */}
         {product.badge && (
-          <span
-            className={`absolute top-3 left-3 text-xs font-semibold px-2 py-1 rounded-full ${badgeStyles[product.badge]}`}
-          >
+          <span className={`absolute top-4 left-4 text-[11px] font-semibold px-2.5 py-1 rounded-lg ${
+            product.badge === "Best Seller" ? "bg-primary text-white" :
+            product.badge === "New" ? "bg-accent text-white" : "bg-red-500 text-white"
+          }`}>
             {product.badge}
           </span>
         )}
       </div>
 
-      {/* Card content */}
-      <div className="p-4 flex flex-col gap-3">
-        {/* Product name */}
-        <h3 className="font-medium text-gray-900 line-clamp-2 leading-snug">
+      {/* Info */}
+      <div className="p-5">
+        <h3 className="font-medium text-primary text-sm leading-snug mb-2 line-clamp-2 min-h-[2.5rem]">
           {product.name}
         </h3>
 
-        {/* Star rating */}
-        <div className="flex items-center gap-1">
-          {Array.from({ length: filledStars }).map((_, i) => (
-            <Star
-              key={`filled-${i}`}
-              className="w-4 h-4 fill-yellow-400 text-yellow-400"
-            />
+        <div className="flex items-center gap-1 mb-3">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star key={i} className={`w-3.5 h-3.5 ${i < filled ? "fill-amber-400 text-amber-400" : "fill-gray-200 text-gray-200"}`} />
           ))}
-          {Array.from({ length: emptyStars }).map((_, i) => (
-            <Star
-              key={`empty-${i}`}
-              className="w-4 h-4 fill-gray-200 text-gray-200"
-            />
-          ))}
-          <span className="text-sm text-gray-500 ml-1">
-            ({product.reviewCount})
-          </span>
+          <span className="text-xs text-text-muted ml-1">({product.reviewCount})</span>
         </div>
 
-        {/* Price */}
-        <div className="flex items-center gap-2">
-          <span className="font-bold text-gray-900">
-            {formatPrice(product.price)}
-          </span>
+        <div className="flex items-baseline gap-2 mb-4">
+          <span className="text-lg font-bold text-primary">{formatPrice(product.price)}</span>
           {product.originalPrice && (
-            <span className="text-sm text-gray-400 line-through">
-              {formatPrice(product.originalPrice)}
-            </span>
+            <span className="text-sm text-text-muted line-through">{formatPrice(product.originalPrice)}</span>
           )}
         </div>
 
-        {/* Add to Cart button */}
-        {product.inStock ? (
-          <button
-            onClick={() => addToCart(product)}
-            className="w-full bg-primary text-white rounded-[8px] py-2 flex items-center justify-center gap-2 font-medium transition-colors duration-200 hover:bg-primary/90"
-          >
-            <ShoppingCart className="w-4 h-4" />
-            Add to Cart
-          </button>
-        ) : (
-          <button
-            disabled
-            className="w-full bg-gray-300 text-gray-500 rounded-[8px] py-2 flex items-center justify-center gap-2 font-medium cursor-not-allowed"
-          >
-            Out of Stock
-          </button>
-        )}
+        <button
+          onClick={() => addToCart(product)}
+          className="w-full flex items-center justify-center gap-2 bg-surface hover:bg-primary hover:text-white text-primary text-sm font-medium py-2.5 rounded-xl border border-border/60 hover:border-primary transition-all duration-200"
+        >
+          <ShoppingCart className="w-4 h-4" />
+          Add to Cart
+        </button>
       </div>
     </div>
   );
