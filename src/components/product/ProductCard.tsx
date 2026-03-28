@@ -37,12 +37,13 @@ export default function ProductCard({ product }: ProductCardProps) {
       }}
     >
       {/* Image area */}
-      <div className="relative aspect-square overflow-hidden">
-        <div className="w-full h-full bg-gray-200 flex items-center justify-center transition-transform duration-300 hover:scale-105">
-          <span className="text-gray-500 text-sm text-center px-4 font-medium">
-            {product.name}
-          </span>
-        </div>
+      <div className="relative aspect-square overflow-hidden bg-gray-100">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          loading="lazy"
+        />
 
         {/* Badge overlay */}
         {product.badge && (

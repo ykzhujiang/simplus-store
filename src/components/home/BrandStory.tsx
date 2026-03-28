@@ -7,15 +7,11 @@ const BrandStory: FC = () => {
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
           {/* Left: Brand Image Placeholder */}
           <div className="w-full md:w-1/2 flex-shrink-0">
-            <div
-              className="bg-gray-200 rounded-[12px] w-full aspect-[4/3] flex items-center justify-center"
-              aria-label="Brand image placeholder"
-              role="img"
-            >
-              <span className="text-gray-500 text-sm font-medium tracking-wide">
-                Brand Image
-              </span>
-            </div>
+            <img
+              src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=600&fit=crop"
+              alt="Modern home with Simplus appliances"
+              className="rounded-[12px] w-full aspect-[4/3] object-cover"
+            />
           </div>
 
           {/* Right: Text Content */}

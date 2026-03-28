@@ -9,11 +9,9 @@ export const products: Product[] = [
     price: 49.99,
     rating: 4.8,
     reviewCount: 342,
-    image: "/images/products/air-fryer.jpg",
+    image: "https://images.unsplash.com/photo-1648473990174-5b0a28239e48?w=600&h=600&fit=crop",
     images: [
-      "/images/products/air-fryer.jpg",
-      "/images/products/air-fryer-2.jpg",
-      "/images/products/air-fryer-3.jpg",
+      "https://images.unsplash.com/photo-1648473990174-5b0a28239e48?w=600&h=600&fit=crop",
     ],
     description:
       "Cook your favourite meals with up to 80% less fat using rapid hot-air circulation technology. The 4.5L capacity is perfect for families, handling everything from crispy fries to whole roast chicken. A digital touchscreen and 8 preset programmes make healthy cooking effortless every day.",
@@ -35,11 +33,9 @@ export const products: Product[] = [
     price: 69.99,
     rating: 4.6,
     reviewCount: 218,
-    image: "/images/products/cordless-vacuum.jpg",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=600&fit=crop",
     images: [
-      "/images/products/cordless-vacuum.jpg",
-      "/images/products/cordless-vacuum-2.jpg",
-      "/images/products/cordless-vacuum-3.jpg",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=600&fit=crop",
     ],
     description:
       "Experience whole-home cleaning freedom with a powerful brushless motor and a battery life of up to 45 minutes on a single charge. The lightweight stick design converts instantly to a handheld unit for stairs, upholstery, and car interiors. An LED floor nozzle illuminates hidden dust and debris for a truly thorough clean.",
@@ -61,11 +57,9 @@ export const products: Product[] = [
     originalPrice: 39.99,
     rating: 4.5,
     reviewCount: 156,
-    image: "/images/products/hair-dryer.jpg",
+    image: "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=600&h=600&fit=crop",
     images: [
-      "/images/products/hair-dryer.jpg",
-      "/images/products/hair-dryer-2.jpg",
-      "/images/products/hair-dryer-3.jpg",
+      "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=600&h=600&fit=crop",
     ],
     description:
       "Achieve a salon-quality finish at home with 1600W of drying power and ionic technology that eliminates frizz while boosting shine. Two speed settings and three heat settings let you tailor the airflow to every hair type, from fine to thick. The cool-shot button locks in your style for long-lasting results.",
@@ -87,11 +81,9 @@ export const products: Product[] = [
     originalPrice: 44.99,
     rating: 4.3,
     reviewCount: 89,
-    image: "/images/products/garment-steamer.jpg",
+    image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=600&fit=crop",
     images: [
-      "/images/products/garment-steamer.jpg",
-      "/images/products/garment-steamer-2.jpg",
-      "/images/products/garment-steamer-3.jpg",
+      "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=600&fit=crop",
     ],
     description:
       "Remove wrinkles from all fabric types in minutes with continuous, powerful steam that penetrates fibres far more gently than a traditional iron. The 180 ml water tank delivers up to 20 minutes of uninterrupted steaming, and the device is ready to use in just 30 seconds. Lightweight and travel-friendly, it is ideal for keeping clothes looking their best at home or on the go.",
@@ -112,11 +104,9 @@ export const products: Product[] = [
     price: 39.99,
     rating: 4.7,
     reviewCount: 267,
-    image: "/images/products/blender.jpg",
+    image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=600&h=600&fit=crop",
     images: [
-      "/images/products/blender.jpg",
-      "/images/products/blender-2.jpg",
-      "/images/products/blender-3.jpg",
+      "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=600&h=600&fit=crop",
     ],
     description:
       "Blend, chop, grind, and puree with a single versatile appliance that handles everything from morning smoothies to homemade soups. The 800W motor and stainless-steel blades power through frozen fruit, nuts, and fibrous vegetables with ease. A 1.5L BPA-free jug, a personal blending cup, and a grinding attachment mean you have the right tool for every task.",
@@ -137,11 +127,9 @@ export const products: Product[] = [
     price: 59.99,
     rating: 4.9,
     reviewCount: 412,
-    image: "/images/products/multicooker.jpg",
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=600&fit=crop",
     images: [
-      "/images/products/multicooker.jpg",
-      "/images/products/multicooker-2.jpg",
-      "/images/products/multicooker-3.jpg",
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=600&fit=crop",
     ],
     description:
       "Replace up to seven kitchen appliances with one sleek countertop device that pressure cooks, slow cooks, steams, sautés, and more. The intuitive 12-in-1 programme menu guides you through everything from fall-off-the-bone ribs to perfectly fluffy rice. A 5L non-stick inner pot and keep-warm function mean hot, restaurant-quality meals are always ready when you are.",
@@ -162,11 +150,9 @@ export const products: Product[] = [
     price: 89.99,
     rating: 4.4,
     reviewCount: 134,
-    image: "/images/products/robot-vacuum.jpg",
+    image: "https://images.unsplash.com/photo-1667685548519-acf5e5073aa5?w=600&h=600&fit=crop",
     images: [
-      "/images/products/robot-vacuum.jpg",
-      "/images/products/robot-vacuum-2.jpg",
-      "/images/products/robot-vacuum-3.jpg",
+      "https://images.unsplash.com/photo-1667685548519-acf5e5073aa5?w=600&h=600&fit=crop",
     ],
     description:
       "Let smart gyroscopic navigation map your home and plan the most efficient cleaning route so every corner gets the attention it deserves. The slim 7 cm profile glides under sofas and beds where conventional vacuums cannot reach, and the auto-boost mode increases suction on carpets automatically. Schedule daily cleans from the companion app and return home to spotless floors without lifting a finger.",
@@ -188,11 +174,9 @@ export const products: Product[] = [
     price: 79.99,
     rating: 4.2,
     reviewCount: 98,
-    image: "/images/products/dehumidifier.jpg",
+    image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=600&fit=crop&q=80",
     images: [
-      "/images/products/dehumidifier.jpg",
-      "/images/products/dehumidifier-2.jpg",
-      "/images/products/dehumidifier-3.jpg",
+      "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=600&fit=crop&q=80",
     ],
     description:
       "Maintain a comfortable, healthy home environment by removing up to 12 litres of excess moisture from the air every day. The built-in humidistat lets you set your target humidity level and the unit cycles on and off automatically to maintain it, saving energy while preventing mould, damp, and allergens. A 2.5L easy-empty tank and continuous-drain option give you the flexibility to suit any room or routine.",
