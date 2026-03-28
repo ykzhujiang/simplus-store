@@ -30,12 +30,16 @@ export default function BrandStory() {
         </div>
       </div>
 
-      {/* Brand banner */}
+      {/* Brand banner with lifestyle background */}
       <div className="mx-auto max-w-[1200px] px-4 pb-5">
-        <div className="bg-primary rounded-lg text-center py-10 px-6">
-          <p className="text-white/60 text-[11px] tracking-[0.15em] uppercase mb-2">Since 2021 · Southeast Asia</p>
-          <h2 className="text-white text-[22px] md:text-[28px] font-bold mb-1">美好生活，好用不贵</h2>
-          <p className="text-white/70 text-[14px]">Simple + Plus — Good Life, Great Value</p>
+        <div className="relative rounded-lg overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/simplus-store/images/hero-lifestyle.png" alt="Simplus lifestyle" className="w-full h-[200px] md:h-[240px] object-cover" />
+          <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center px-6">
+            <p className="text-white/50 text-[11px] tracking-[0.15em] uppercase mb-2">Since 2021 · Southeast Asia</p>
+            <h2 className="text-white text-[24px] md:text-[32px] font-bold mb-1">美好生活，好用不贵</h2>
+            <p className="text-white/70 text-[14px]">Simple + Plus — Good Life, Great Value</p>
+          </div>
         </div>
       </div>
     </>
