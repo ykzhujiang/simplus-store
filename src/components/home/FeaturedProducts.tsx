@@ -3,7 +3,7 @@ import ProductCard from "@/components/product/ProductCard";
 
 export default function FeaturedProducts() {
   return (
-    <section className="py-16 px-4">
+    <section id="featured-products" className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-heading font-bold text-center text-secondary mb-4">
           Best Sellers

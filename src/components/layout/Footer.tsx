@@ -107,7 +107,7 @@ export default function Footer() {
               </div>
               <p className="text-xs text-white/50 leading-relaxed pt-1">
                 Fast and reliable shipping nationwide. Free delivery on orders
-                above the minimum threshold.
+                over $50.
               </p>
             </div>
           </div>

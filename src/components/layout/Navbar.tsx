@@ -61,8 +61,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
-            href="#"
-            className="font-heading text-xl font-bold text-[#FF6B35] shrink-0"
+            href="/"
+            className="font-heading text-xl font-bold text-primary shrink-0"
           >
             Simplus
           </Link>
@@ -71,7 +71,7 @@ export default function Navbar() {
           <ul className="hidden md:flex items-center gap-8">
             <li>
               <Link
-                href="#"
+                href="/"
                 className="text-text hover:text-primary transition-colors"
               >
                 Home
@@ -148,7 +148,7 @@ export default function Navbar() {
             >
               <ShoppingCart className="w-5 h-5" />
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#FF6B35] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center leading-none">
+                <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center leading-none">
                   {itemCount > 99 ? "99+" : itemCount}
                 </span>
               )}

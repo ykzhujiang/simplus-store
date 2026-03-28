@@ -1,7 +1,8 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { Product, CartItem } from "@/types/product";
+import { showToast } from "@/components/ui/Toast";
 
 interface CartContextValue {
   items: CartItem[];
@@ -51,6 +52,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
       return [...prev, { product, quantity: 1 }];
     });
+    showToast(`${product.name} added to cart`);
   };
 
   const removeFromCart = (productId: string) => {
@@ -71,7 +73,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const openCart = () => setIsCartOpen(true);
-  const closeCart = () => setIsCartOpen(false);
+  const closeCart = useCallback(() => setIsCartOpen(false), []);
 
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = items.reduce(

@@ -2,8 +2,9 @@
 
 import { Product } from "@/types/product";
 import { useCart } from "@/components/cart/CartProvider";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, getStarRating } from "@/lib/utils";
 import { Star, ShoppingCart } from "lucide-react";
+import Image from "next/image";
 
 interface ProductCardProps {
   product: Product;
@@ -12,37 +13,24 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
 
-  const filledStars = Math.round(product.rating);
-  const emptyStars = 5 - filledStars;
+  const { filled: filledStars, empty: emptyStars } = getStarRating(product.rating);
 
   const badgeStyles: Record<string, string> = {
-    "Best Seller": "bg-[#FF6B35] text-white",
-    New: "bg-[#16C79A] text-white",
+    "Best Seller": "bg-primary text-white",
+    New: "bg-accent text-white",
     Sale: "bg-red-500 text-white",
   };
 
   return (
-    <div
-      className="rounded-[12px] bg-white overflow-hidden transition-shadow duration-200"
-      style={{
-        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow =
-          "0 6px 20px rgba(0,0,0,0.14)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow =
-          "0 2px 8px rgba(0,0,0,0.08)";
-      }}
-    >
+    <div className="rounded-[12px] bg-white overflow-hidden transition-shadow duration-200 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)]">
       {/* Image area */}
       <div className="relative aspect-square overflow-hidden bg-gray-100">
-        <img
+        <Image
           src={product.image}
           alt={product.name}
+          width={400}
+          height={400}
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-          loading="lazy"
         />
 
         {/* Badge overlay */}
@@ -94,13 +82,22 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Add to Cart button */}
-        <button
-          onClick={() => addToCart(product)}
-          className="w-full bg-[#FF6B35] text-white rounded-[8px] py-2 flex items-center justify-center gap-2 font-medium transition-colors duration-200 hover:bg-[#e55a26]"
-        >
-          <ShoppingCart className="w-4 h-4" />
-          Add to Cart
-        </button>
+        {product.inStock ? (
+          <button
+            onClick={() => addToCart(product)}
+            className="w-full bg-primary text-white rounded-[8px] py-2 flex items-center justify-center gap-2 font-medium transition-colors duration-200 hover:bg-primary/90"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            Add to Cart
+          </button>
+        ) : (
+          <button
+            disabled
+            className="w-full bg-gray-300 text-gray-500 rounded-[8px] py-2 flex items-center justify-center gap-2 font-medium cursor-not-allowed"
+          >
+            Out of Stock
+          </button>
+        )}
       </div>
     </div>
   );

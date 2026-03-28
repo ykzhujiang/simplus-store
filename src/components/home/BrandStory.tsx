@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import Image from "next/image";
 
 const BrandStory: FC = () => {
   return (
@@ -7,9 +8,11 @@ const BrandStory: FC = () => {
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
           {/* Left: Brand Image Placeholder */}
           <div className="w-full md:w-1/2 flex-shrink-0">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&h=600&fit=crop"
               alt="Modern home with Simplus appliances"
+              width={800}
+              height={600}
               className="rounded-[12px] w-full aspect-[4/3] object-cover"
             />
           </div>
@@ -56,10 +59,10 @@ const BrandStory: FC = () => {
 
             <div className="pt-2">
               <a
-                href="/about"
+                href="#featured-products"
                 className="inline-block bg-accent hover:bg-accent-dark text-white font-semibold text-sm px-6 py-3 rounded-[8px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
               >
-                Learn More
+                Explore Products
               </a>
             </div>
           </div>

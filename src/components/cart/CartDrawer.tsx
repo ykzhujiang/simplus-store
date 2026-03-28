@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import Image from "next/image";
 import { useCart } from "@/components/cart/CartProvider";
 import { formatPrice } from "@/lib/utils";
 import { X, Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
@@ -10,6 +12,16 @@ const SHIPPING_COST = 5.99;
 export default function CartDrawer() {
   const { items, removeFromCart, updateQuantity, subtotal, isCartOpen, closeCart } =
     useCart();
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!isCartOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeCart();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isCartOpen, closeCart]);
 
   const shippingFree = subtotal >= SHIPPING_THRESHOLD;
   const shippingCost = shippingFree ? 0 : SHIPPING_COST;
@@ -68,10 +80,14 @@ export default function CartDrawer() {
               {items.map(({ product, quantity }) => (
                 <li key={product.id} className="flex gap-3">
                   {/* Thumbnail */}
-                  <div className="w-16 h-16 flex-shrink-0 bg-gray-200 rounded-[8px] flex items-center justify-center overflow-hidden">
-                    <span className="text-[9px] text-gray-500 text-center px-1 leading-tight line-clamp-3">
-                      {product.name}
-                    </span>
+                  <div className="w-16 h-16 flex-shrink-0 bg-gray-100 rounded-[8px] overflow-hidden">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   {/* Info */}
